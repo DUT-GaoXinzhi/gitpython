@@ -65,5 +65,10 @@ img = img.cumsum()
 ax = img.plot.scatter(x='A', y='B', color='Blue', label='Class1')
 img.plot.scatter(x='A', y='C', color='Green', label='Class2', ax=ax)
 plt.show()
+# 逐行遍历pandas的数据元素
+for index, row in data.iterrows():
+# row为返回的值
+#重新设置索引的值
+df_new = df.reset_index(drop=True) 
 
 
