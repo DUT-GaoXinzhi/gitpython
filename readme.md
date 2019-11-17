@@ -7,3 +7,4 @@
 * 爬虫文件夹是通过request和beautifulsoup库爬取的爱奇艺和腾讯视频的热播榜，方便后续函数查阅
 * 整体文件是在pycharm下运行的，隐藏文件是pycharm的工程文件
 * github真是个好东西
+* 冲冲冲
