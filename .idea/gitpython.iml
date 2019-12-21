@@ -5,7 +5,7 @@
       <excludeFolder url="file://$MODULE_DIR$/pytorch/surgical_dataset_4classes" />
       <excludeFolder url="file://$MODULE_DIR$/pytorch/surgical_dataset_4classes/train" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="Python 3.6 (TensorFlow-Examples)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TestRunnerService">

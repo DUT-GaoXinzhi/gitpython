@@ -12,7 +12,7 @@ if __name__ == "__main__":
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
     # 根据自己定义的那个勒MyDataset来创建数据集！注意是数据集！而不是loader迭代器
-    test_data = MyDataset(r"E:/gaoxinzhi/pytorch/surgical_dataset_4classes/test/", transform)
+    test_data = MyDataset(r"F:/gitpython/pytorch/surgical_dataset_4classes/test/", transform)
     testloader = torch.utils.data.DataLoader(test_data, batch_size=4, shuffle=True, num_workers=2)
     class_list = ["forceps1", "scissors1", "scissors2", "tweezers"]
     PATH = r'./shit_net.pth'
