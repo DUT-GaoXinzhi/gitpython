@@ -45,9 +45,13 @@ if __name__ == "__main__":
     # 获取随机数据
     dataiter = iter(train_load)
     images, labels = dataiter.next()
-
     images = torchvision.utils.make_grid(images)
     images = images / 2 + 0.5  # unnormalize
-    npimg = images.numpy()
+    npimg = images.numpy()# transform to numpy
+    npimg = np.transpose(npimg,(1,2,0))# resize ndarray to chw
+    plt.figure(1)
+    plt.title("get photo")
+    plt.imshow(npimg)
+    plt.show()# must!
 
 

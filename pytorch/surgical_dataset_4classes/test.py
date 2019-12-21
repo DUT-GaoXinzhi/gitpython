@@ -19,6 +19,7 @@ class SimpleNet(nn.Module):
         self.conv2 = nn.Conv2d(in_channels=12, out_channels=24, kernel_size=3, padding=1)
         self.relu2 = nn.LeakyReLU()
 
+
         self.pool1 = nn.MaxPool2d(kernel_size=2)
 
         self.conv3 = nn.Conv2d(in_channels=24, out_channels=128, kernel_size=3, padding=1)
@@ -84,15 +85,14 @@ if __name__ == "__main__":
     # 获取随机数据
     dataiter = iter(trainloader)
     images, labels = dataiter.next()
-
+    # 定义损失函数和优化函数
     network = SimpleNet().to(device)
     criterion = nn.CrossEntropyLoss()
     tran = transforms.ToTensor()
-    optimizer = optim.SGD(network.parameters(),lr=0.0008,momentum=0.7)
-    network.train()
+    optimizer = optim.SGD(network.parameters(),lr=0.001,momentum=0.9)
     print("begin training")
 
-    for epoch in range(20):  # 多批次循环
+    for epoch in range(17):  # 多批次循环
         running_loss = 0.0
         for i, data in enumerate(trainloader, 0):
             # 获取输入
@@ -113,6 +113,7 @@ if __name__ == "__main__":
                 running_loss = 0.0
                 count.append(num)
                 num += 1
+    # 绘制损失函数和训练批次的函数图像
     plt.figure(1)
     plt.title("loss - frequency")
     plt.ylabel("loss")

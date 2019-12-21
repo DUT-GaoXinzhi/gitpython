@@ -7,6 +7,7 @@ import cv2
 import torchvision.transforms as transforms
 import torchvision
 from newdata import MyDataset
+import matplotlib.pyplot as plt
 if __name__ == "__main__":
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
@@ -19,6 +20,8 @@ if __name__ == "__main__":
     net.load_state_dict(torch.load(PATH))
     correct = 0
     total = 0
+    accuarcy = []
+    frequency = []
     with open(r"./result.csv", 'w') as f:
         with torch.no_grad():
             for data in testloader:
@@ -30,5 +33,16 @@ if __name__ == "__main__":
                 correct += (predicted == labels).sum().item()
                 for i in range(4):
                     f.write(class_list[labels[i]] + "\t" + class_list[predicted[i]] + '\n')
+                accuarcy.append(correct / total)
+                frequency.append(total)
+    plt.figure(1)
+    plt.title("accuaracy - frequency")
+    plt.ylabel("accuaracy")
+    plt.xlabel("frequency")
+    plt.grid(True)
+    y = np.array(accuarcy)
+    x = np.array(frequency)
+    plt.plot(x,y)
+    plt.show()
     print('Accuracy of the network on the test images: %d %%' % (100 * correct / total))
 
