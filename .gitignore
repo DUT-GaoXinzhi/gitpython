@@ -2,3 +2,6 @@
 /pytorch/surgical_dataset_4classes/test/
 /pytorch/surgical_dataset_4classes/train/
 /.idea/
+/pytorch/surgical_dataset_4classes/shit_net.pth
+/pytorch/surgical_dataset_4classes/result.csv
+
