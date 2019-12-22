@@ -79,7 +79,7 @@ if __name__ == "__main__":
     num = 0
     transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
     # 根据自己定义的那个勒MyDataset来创建数据集！注意是数据集！而不是loader迭代器
-    train_data = MyDataset(r"E:/gaoxinzhi/pytorch/surgical_dataset_4classes/train/", transform)
+    train_data = MyDataset(os.getcwd() + "/train/", transform)
     trainloader = torch.utils.data.DataLoader(train_data, batch_size=5, shuffle=True, num_workers=2)
     class_list = ["forceps1", "scissors1", "scissors2", "tweezers"]
     # 获取随机数据
