@@ -16,7 +16,9 @@ if __name__ == "__main__":
     testloader = torch.utils.data.DataLoader(test_data, batch_size=4, shuffle=True, num_workers=2)
     class_list = ["forceps1", "scissors1", "scissors2", "tweezers"]
     PATH = r'./shit_net.pth'
+    # 创建网络并读取网络参数
     net = SimpleNet().to(device)
+    # print(net)
     net.load_state_dict(torch.load(PATH))
     correct = 0
     total = 0
@@ -32,7 +34,7 @@ if __name__ == "__main__":
                 total += labels.size(0)
                 correct += (predicted == labels).sum().item()
                 for i in range(4):
-                    f.write(class_list[labels[i]] + "\t" + class_list[predicted[i]] + '\n')
+                    f.write("real label:"+class_list[labels[i]] + "\t" + "predict:" +class_list[predicted[i]] + '\n')
                 accuarcy.append(correct / total)
                 frequency.append(total)
     plt.figure(1)

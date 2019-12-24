@@ -6,7 +6,7 @@ import torchvision
 import torchvision.transforms as transforms
 import matplotlib.pyplot as plt
 import numpy as np
-
+from torch.utils.tensorboard import SummaryWriter
 class MyDataset(torch.utils.data.Dataset):  # 创建自己的类：MyDataset,这个类是继承的torch.utils.data.Dataset
     def __init__(self, train_root, transform=None, target_transform=None):  # 初始化一些需要传入的参数
         super(MyDataset, self).__init__()
@@ -35,17 +35,26 @@ class MyDataset(torch.utils.data.Dataset):  # 创建自己的类：MyDataset,这
         return len(self.imgs)
 
 
-
 if __name__ == "__main__":
-    transform = transforms.Compose([transforms.ToTensor(),transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+    writer = SummaryWriter(r"E:\gaoxinzhi\gitpython\pytorch\surgical_dataset_4classes\runs")
+    transform = transforms.Compose([transforms.ToPILImage(),
+                                    transforms.RandomCrop(256),
+                                    #transforms.RandomRotation(180),
+                                    transforms.Resize(512),
+                                    transforms.ToTensor(),
+                                    transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
     # 根据自己定义的那个勒MyDataset来创建数据集！注意是数据集！而不是loader迭代器
-    train_data = MyDataset(r"F:/gitpython/pytorch/surgical_dataset_4classes/train/",transform)
+    train_data = MyDataset(os.getcwd() + "/train/",transform)
     train_load  = torch.utils.data.DataLoader(train_data, batch_size=3,shuffle=True, num_workers=2)
     class_list = ["forceps1/", "scissors1/", "scissors2/", "tweezers/"]
     # 获取随机数据
     dataiter = iter(train_load)
     images, labels = dataiter.next()
     images = torchvision.utils.make_grid(images)
+    # matplotlib_imshow(images)
+    #plt.show()
+    writer.add_image("read images",images)
+
     images = images / 2 + 0.5  # unnormalize
     npimg = images.numpy()# transform to numpy
     npimg = np.transpose(npimg,(1,2,0))# resize ndarray to chw
@@ -53,5 +62,24 @@ if __name__ == "__main__":
     plt.title("get photo")
     plt.imshow(npimg)
     plt.show()# must!
+
+
+# tensorboard --logdir==E:\gaoxinzhi\gitpython\pytorch\surgical_dataset_4classes\runs\
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
