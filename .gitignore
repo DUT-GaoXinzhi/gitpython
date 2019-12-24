@@ -2,8 +2,19 @@
 /pytorch/surgical_dataset_4classes/test/
 /pytorch/surgical_dataset_4classes/train/
 /.idea/
+/.vscode/
 /pytorch/surgical_dataset_4classes/shit_net.pth
 
 
 
 
+*.json
+*.meta
+data/cifar-10-batches-py/data_batch_1
+data/cifar-10-batches-py/data_batch_2
+data/cifar-10-batches-py/data_batch_2
+data/cifar-10-batches-py/data_batch_3
+data/cifar-10-batches-py/data_batch_4
+data/cifar-10-batches-py/data_batch_5
+data/cifar-10-batches-py/readme.html
+data/cifar-10-batches-py/test_batch
