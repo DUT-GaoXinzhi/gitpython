@@ -24,7 +24,7 @@ if __name__ == "__main__":
     total = 0
     accuarcy = []
     frequency = []
-    with open(r"./result.csv", 'w') as f:
+    with open(r"./result.txt", 'w') as f:
         with torch.no_grad():
             for data in testloader:
                 images, labels = data
